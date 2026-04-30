@@ -21,7 +21,7 @@ Context: PyYAML is generally considered the reference information. LibYAML is ge
 
 To understand YAML, one should:
 
-- Understand its information model, that is, the abstract model of how YAML decides to organize data.
+- Understand its information model, that is, the abstract model of how YAML decides to organize data. (See [Processes and Models](#processes-and-models))
 - Translation of that information model to the YAML textual format.
 
 ## Features Overview
@@ -434,3 +434,95 @@ Custom handles can also be defined:
   - Sammy Sosa: 63
   - Ken Griffey: 58
   ```
+
+## Processes and Models
+
+YAML serves two consumers: machines that process data, and humans that read it. To bridge these perspectives, YAML defines two complementary concepts:
+
+- **YAML representations**: an abstract data model (graph of typed nodes) that captures *what* the data is, independent of any textual format.
+- **YAML stream**: a concrete character stream for presenting those representations in a human-readable way.
+
+A **YAML processor** (e.g PyYAML, libyaml) converts between these two views. It works on behalf of an **application** (e.g a config loader, a deployment tool): the processor handles YAML mechanics, the application decides what the data means.
+
+### Three stages
+
+The conversion between representations and streams is broken into three stages:
+
+1. **Representation**: native data structures -> a directed graph of typed nodes.
+2. **Serialization**: the graph -> an ordered event tree (linearized for sequential output).
+3. **Presentation**: the event tree -> a human-readable character stream.
+
+Note: "serialization" in YAML does not mean producing text. It means linearizing the graph into an ordered form. The actual text output is the presentation stage.
+
+> The event-based approach (decoupling structure from output via an event stream) is a common pattern in parser design. rust-analyzer uses a similar technique, where the parser emits events (start-node, token, end-node) to build a lossless syntax tree. The difference: YAML events discard presentation details, while rust-analyzer events preserve everything (whitespace, comments, errors).
+
+![Processing Overview (source: YAML 1.2 spec)](img/yaml-1.2-processing-overview.svg)
+
+### Processes
+
+A processor need not expose all three stages. It may translate directly between native data structures and a character stream (dump and load). However, even when skipping stages, it should behave *as if* it went through all three. Native data structures should only depend on information in the representation (node kinds, tags, content), not on presentation or serialization details like key order, comments, or tag handles.
+
+In practice, this means applications that rely on YAML comments or key ordering are operating outside the spec's guarantees.
+
+#### Dump
+
+Dumping converts native data structures into a character stream:
+native data -> graph -> events -> text.
+
+1. **Representation: Native data -> Abstract graph**
+
+   Native data structures are mapped to YAML's abstract model: a directed graph of typed nodes.
+
+   Three node kinds:
+   - **Sequence**: an ordered series of entries (like arrays/lists).
+   - **Mapping**: an unordered set of (key, value) pairs (like hash tables/dicts). Keys and values are themselves nodes.
+   - **Scalar**: a leaf node (strings, integers, dates, etc).
+
+   The result is a directed graph, not a tree, because nodes can be shared (via anchors/aliases, where multiple parents reference the same node). Each node also carries a **tag** specifying its data type. This simple model can represent any data structure independent of programming language.
+
+2. **Serialization: Abstract graph -> Event/Serialization tree**
+
+   A character stream is sequential: one character after another. A graph with shared nodes and unordered keys cannot be written to a stream directly, so it must be linearized first.
+
+   The serialization process resolves this by:
+   - Imposing an ordering on mapping keys.
+   - Replacing shared node references with placeholders called aliases.
+
+   The result is an event tree: an ordered sequence of events (e.g start-mapping, scalar, end-sequence). YAML does not specify how key order or anchor names are chosen.
+
+   These are called **serialization details**.
+
+   The YAML processor should choose a sensible human-friendly key order and anchor names.
+
+   The serialization tree is suitable for one-pass processing of YAML data.
+
+3. **Presentation: Event tree -> Text**
+
+   The final stage formats the event tree as a human-readable character stream. This is where all stylistic choices are made: block vs flow, indentation, quoting, tag handles, directives, comments, etc. These are called **presentation details**.
+
+   These details are all up to the preferences of the user & may require guidance.
+
+#### Load
+
+Loading is the inverse: text -> events -> graph -> native data. Each stage strips away the details added by its dump counterpart.
+
+1. **Parsing: Text -> Event Tree**
+
+   Takes a character stream, produces an event tree.
+
+   Discards presentation details (styles, indentation, comments). Can fail on ill-formed input.
+
+2. **Composing: Event Tree -> Graph**
+
+   Reconstructs the representation graph from the event tree.
+
+   Resolves aliases back into shared node references, discards serialization details (key order, anchor names). 
+   Can fail on unresolved aliases.
+
+3. **Constructing: Graph -> Native data structure**
+
+   Converts the representation graph into native data structures (dicts, lists, strings, etc). 
+
+   Must only rely on information in the representation (node kinds, tags, content), not presentation or serialization details.
+
+   Can fail if required native types are unavailable.
