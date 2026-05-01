@@ -569,3 +569,222 @@ The diagram shows three models, each inheriting from the previous and adding new
     - (++) Style, spacing, etc.
 
 Each layer's additions (`+`, `++`) are details that should not leak into other layers. Applications should not treat key order, comments, or indentation as meaningful data. Keeping these layers separate ensures YAML representations stay consistent and portable across programming environments.
+
+#### Representation Graph
+
+YAML represents native data as a:
+- **Rooted**: one starting node from which all others are reachable.
+- **Connected**: every node is reachable from the root.
+- **Directed**: edges have direction (parent points to child).
+
+**graph** of tagged nodes.
+
+Other properties:
+- Cycles are allowed.
+- Nodes can have multiple incoming edges (shared via aliases).
+
+Two categories: **collections** (nodes defined in terms of other nodes) and **scalars** (independent nodes).
+
+![Representation Model (source: YAML 1.2 spec)](img/yaml-1.2-represent.svg)
+
+##### Nodes
+
+Each node has content of one of three kinds, plus a tag:
+
+- **Scalar**: an opaque datum presentable as zero or more Unicode characters.
+- **Sequence**: an ordered series of zero or more nodes. May contain the same node more than once, or even itself.
+- **Mapping**: an unordered set of key/value node pairs. Keys must be unique.
+
+##### Tags
+
+Tags represent type information & meta information about a node:
+- **Global tags** are URIs, globally unique. The `tag:` URI scheme is recommended.
+- **Local tags** start with `!`, application-specific.
+
+YAML provides a `TAG` directive to make tag notation less verbose.
+
+Notes:
+- Tags that share the same URI prefix are not related in any special way.
+- By **convention**, `/` is used for namespace hierarchies and `#` for variants, but each tag may use its own rules (e.g Perl uses `::`, Java uses `.`).
+
+Each tag must specify:
+- The expected node kind (scalar, sequence, or mapping).
+- For scalar tags: a mechanism for converting formatted content to a canonical form (for equality testing).
+- Optionally:
+  - Allowed content values for validation.
+  - Tag resolution rules.
+  - Other metadata applicable to all of the tag's nodes.
+
+##### Node Comparison
+
+Mapping keys must be unique, so YAML needs a way to test node equality:
+
+- **Canonical form**: every scalar tag must specify how to produce a canonical form from formatted content. For example, `0o13` (octal) and `0xB` (hex) both have canonical form `11`.
+- **Equality**: two nodes are equal when they have the same tag and content. Scalars compare canonical forms character-by-character. Collections compare recursively.
+- **Uniqueness**: a mapping's keys are unique if no two keys are equal.
+
+Notes:
+- Tag equality can use simple character-by-character comparison (since processors can't know every URI scheme's equality rules). Tags must therefore be presented in canonical form. The `tag:` URI scheme also uses this comparison method.
+- If a node has itself as a descendant (via an alias, i.e circular reference), equality checking could loop forever. The spec leaves this to each processor to decide.
+- A processor may treat equal scalars as identical.
+
+#### Serialization Tree
+
+The representation graph can't be consumed sequentially as-is: keys are unordered and nodes can be shared. The serialization tree resolves this, giving each node an ordered set of children.
+
+When constructing native data structures from the serialization tree, key order and anchor names should not be used to preserve application data.
+
+![Serialization Model (source: YAML 1.2 spec)](img/yaml-1.2-serialize.svg)
+
+##### Mapping Key Order
+
+- Mapping keys have no order in the representation. Serialization imposes one, but this is a **serialization detail**, not application data.
+- Where order matters, use a sequence instead (e.g an ordered mapping = a sequence of single-pair mappings).
+
+##### Anchors and Aliases
+
+- A node can appear in multiple collections (shared node). To serialize this, the first occurrence gets an **anchor** (`&name`), and subsequent occurrences become **alias nodes** (`*name`) referring back to it.
+- Anchor names are serialization details, discarded after composing back to a graph.
+- An alias refers to the *most recent* event with that anchor name. So anchors don't need to be unique within a serialization: if two nodes use `&a`, then `*a` refers to whichever `&a` came last.
+- An anchor need not have any alias referring to it (anchoring without aliasing is valid).
+
+#### Presentation Stream
+
+The presentation stream is the final human-readable output: a stream of Unicode characters using styles, scalar formats, comments, directives, etc. A single stream can contain multiple documents separated by markers.
+
+![Presentation Model (source: YAML 1.2 spec)](img/yaml-1.2-present.svg)
+
+##### Node Styles
+
+- Each node is presented in some style depending on its kind. Styles are **presentation details**, not reflected in the serialization tree or representation graph.
+- Two groups:
+  - **Block styles**: use indentation to denote structure.
+  - **Flow styles**: use explicit indicators.
+- Scalar styles: literal (`|`), folded (`>`), plain, single-quoted, double-quoted.
+
+![Kind/Style Combinations (source: YAML 1.2 spec)](img/yaml-1.2-styles.svg)
+
+##### Scalar Formats
+
+- Scalars can be presented in several formats (e.g integer `11` might also be written as `0xB`). Tags must specify how to convert formatted content to canonical form.
+- Like node style, format is a **presentation detail**.
+
+##### Comments
+
+- Comments are a **presentation detail**, they must not affect the serialization tree or representation graph.
+- Not associated with any particular node. Must not appear inside scalars, but may be interleaved with scalars inside collections.
+
+##### Directives
+
+- Each document may have directives (a name and optional parameters). Like all presentation details, not reflected in the serialization tree or representation graph.
+- YAML 1.2 defines two: `YAML` and `TAG`.
+
+### Loading Failure Points
+
+Loading native data structures from a YAML stream can fail at multiple points.
+
+![Loading Failure Points (source: YAML 1.2 spec)](img/yaml-1.2-loading-failure.svg)
+
+Two levels of representation:
+- **Partial representation**: tags may be unresolved, canonical forms may be missing. Useful when type information is incomplete.
+- **Complete representation**: every node has a resolved tag and canonical form. Required for constructing native data structures.
+
+#### Well-Formed Streams and Identified Aliases
+
+- Character stream must match the BNF productions defined in the spec. Every alias must refer to a previous node identified by an anchor.
+- Processors should reject malformed streams and unidentified aliases.
+
+```yaml
+# Malformed stream: bad indentation
+key: value
+  bad: indent   # error: mapping values are not allowed here
+
+# Unidentified alias: *unknown was never anchored
+name: *unknown  # error: no anchor named "unknown"
+```
+
+#### Resolved Tags
+
+- Most tags are not explicit in the character stream.
+- During parsing, untagged nodes get a non-specific tag:
+  - `!` for non-plain scalars (quoted or block: `'...'`, `"..."`, `|`, `>`). These are always strings.
+  - `?` for everything else (plain scalars like `8080`, `true`, `hello`, and all collections). These need further resolution.
+- Composing a complete representation requires resolving each non-specific tag to a specific one (global or local).
+- Tag resolution depends only on:
+  - The node's non-specific tag (`?` or `!`).
+  - The path from root to that node (the chain of parents, i.e. structural position in the tree).
+  - The node's content and kind (scalar, sequence, or mapping).
+- Otherwise, tag resolution must not consider:
+  - Presentation details (comments, indentation, styles).
+  - Sibling node content.
+  - Associated value/key content.
+
+- These restrictions ensure tag resolution can happen as soon as a node is first encountered, typically before its content is fully parsed.
+  -> This makes one-pass resolution both possible and practical.
+
+Resolution conventions:
+- `!` non-specific tag should resolve to `!!seq`, `!!map`, or `!!str` depending on node kind (scalar, sequence, or mapping). This lets authors "disable" tag resolution by explicitly writing `!`, forcing a vanilla type.
+- `?` non-specific tag is where application-specific rules apply:
+  - Most commonly for plain scalars: matching content against regexes for integers, floats, timestamps, etc.
+  - Applications may also match mapping keys to resolve structured types (e.g. points, complex numbers).
+- Processors should provide mechanisms for applications to override and expand these default rules.
+- Unresolved tags are not an error. If a document contains unresolved tags, the processor can still compose a partial representation: the graph structure is built (kinds, content, relationships are all known), but some nodes keep their non-specific tag (`?` or `!`) instead of a specific one like `!!int` or `!!str`. A complete representation requires every node to have a specific tag, so native data structures can't be constructed from a partial one.
+
+```yaml
+# Resolution by content (non-specific tag ?):
+port: 8080       # ? + content "8080" -> !!int
+host: localhost   # ? + content "localhost" -> !!str
+debug: true      # ? + content "true" -> !!bool
+
+# Resolution by non-specific tag (! always -> vanilla type):
+name: 'Alice'    # ! -> !!str (quoted, regardless of content)
+count: '8080'    # ! -> !!str (even though content looks like integer)
+```
+
+Path from root can also influence resolution. An application might use the parent chain to override default rules:
+
+```yaml
+--- !server
+port: 8080       # app knows path is !server -> port, so resolves to !!int
+                 # even without checking content pattern
+host: localhost
+
+# But resolution must NOT look at siblings or associated nodes.
+# e.g. resolving "port" cannot depend on what "host" contains.
+```
+
+#### Recognized and Valid Tags
+
+- For a node to be fully processable, two conditions must hold:
+  - The tag is **recognized**: the processor knows what the tag means (has rules for it).
+  - The content is **valid**: the content matches what the tag expects (e.g. `!!int` expects integer-like content).
+- Unrecognized or invalid scalars only allow partial representation.
+- Unrecognized or invalid collections still allow complete representation (collection equality doesn't depend on data type knowledge), but native data structures cannot be constructed.
+
+```yaml
+# Unrecognized tag: processor doesn't know what !matrix means
+transform: !matrix [[1,0],[0,1]]
+
+# Invalid content: tag is recognized but content doesn't match
+count: !!int "not a number"
+```
+
+#### Available Tags
+
+- The processing environment may lack native types for certain tags. When unavailable, native construction fails, but a complete representation (the graph of typed nodes) can still be composed. The application can work with it as a generic structure of `(tag, content)` pairs without native conversion.
+
+```yaml
+# !!timestamp is a valid YAML tag, but not every language
+# has a native timestamp type.
+created: !!timestamp 2002-12-14
+```
+
+```python
+# Native construction (fails if no timestamp type):
+{"created": datetime(2002, 12, 14)}
+
+# Using complete representation directly (always works):
+{"created": Node(tag="tag:yaml.org,2002:timestamp", content="2002-12-14")}
+# The app knows it's a timestamp (from the tag) and has
+# the raw content. It can format, pass along, or convert manually.
+```
