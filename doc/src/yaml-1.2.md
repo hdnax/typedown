@@ -510,13 +510,16 @@ Loading is the inverse: text -> events -> graph -> native data. Each stage strip
 
    Takes a character stream, produces an event tree.
 
-   Discards presentation details (styles, indentation, comments). Can fail on ill-formed input.
+   Discards presentation details (styles, indentation, comments).
+
+   Can fail on ill-formed input.
 
 2. **Composing: Event Tree -> Graph**
 
    Reconstructs the representation graph from the event tree.
 
    Resolves aliases back into shared node references, discards serialization details (key order, anchor names). 
+
    Can fail on unresolved aliases.
 
 3. **Constructing: Graph -> Native data structure**
