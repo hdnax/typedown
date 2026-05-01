@@ -1,4 +1,4 @@
-# YAML 1.2
+## YAML 1.2
 
 Link: https://yaml.org/spec/1.2.2/
 
