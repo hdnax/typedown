@@ -15,7 +15,7 @@ The general important [goals](https://yaml.org/spec/1.2.2/#goals) of YAML:
 2. Be portable across languages.
 3. Easy to parse/implement/use.
 
-Context: PyYAML is generally considered the reference information. LibYAML is generally used in other YAML frameworks.
+Context: PyYAML is generally considered the reference implementation. LibYAML is generally used in other YAML frameworks.
 
 ## Structure
 
