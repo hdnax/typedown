@@ -4,11 +4,22 @@ This is the main page of the Semantic web research, containing sub-links to sub-
 
 As a document itself, this goes on about the overview of semantic webs (web 3): their philosophy, practices & recurring themes/ideas.
 
+Key takeaways:
+
+> - The semantic web is an **extension** of the world wide web, focusing on defining a consistent, unambiguous, machine-comprehensible semantic model of the world wide web components.
+> - The semantic web has 4 main components:
+>   - XML: To define custom entities. Entities are defined uniquely by URIs.
+>   - RDF: Define relationship between entities.
+>   - Ontology: A taxonomy for entities and inference rules based on the relationship between entities. An ontology can also define equivalence relations of its concepts to other ontologies' concepts.
+
 Here is the list of resources used this document:
 
-- [The Semantic Web Made Easy](https://www.w3.org/RDF/Metalog/docs/sw-easy)
 - [The Semantic Web Article (Berners-Lee et al.)](https://www-sop.inria.fr/acacia/cours/essi2006/Scientific%20American_%20Feature%20Article_%20The%20Semantic%20Web_%20May%202001.pdf).
-- [The Semantic Web Slides by Berners-Lee et al.](https://www.w3.org/2000/Talks/0906-xmlweb-tbl/text.htm).
+
+See related resources:
+
+- [The Semantic Web Slides by Berners-Lee et al.](https://www.w3.org/2000/Talks/0906-xmlweb-tbl/text.htm). Check the corresponding notes here: [](./web-3/related/the-semantic-web.md)
+- [The Semantic Web Made Easy](https://www.w3.org/RDF/Metalog/docs/sw-easy)
 
 Refer to [Research Topics](#research-topics) for the more in-depth details of the semantic web.
 
@@ -110,6 +121,8 @@ The challenge of semantic web is "to provide a language that expresses both data
 
 ### Key Technologies
 
+Related technologies: XML & RDF.
+
 Two key technologies enable this:
 
 - **XML**: adds arbitrary structure to documents via custom tags (e.g., `<zip_code>`). Structure without meaning.
@@ -160,6 +173,8 @@ They provide:
 - **Equivalence relations**: map concepts across ontologies. If you publish an ontology defining "zip code" and I publish one defining "postal code", either or both ontologies can state: `my:zip_code` is equivalent to `your:postal_code`.
 
 ## Agents (The Application of The Samantic Web)
+
+**Related technology**: [DAML](http://www.w3.org/2000/Talks/0815-daml-sweb-tbl) (DARPA Agent Markup Language).
 
 Because the Semantic Web aims at making web pages more machine-readable, **software agents** that harvest data from diverse sources, process it, and exchange results emerge.
 
