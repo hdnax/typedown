@@ -8,7 +8,7 @@
       - [Ontologies](./research/web-3/concepts/ontologies.md)
       - [SPARQL](./research/web-3/concepts/sparql.md)
       - [Linked Data](./research/web-3/concepts/linked-data.md)
-    - Related
+    - [Related](./research/web-3/related.md)
       - [The Semantic Web (Tim Berners Lee)](./research/web-3/related/the-semantic-web.md).
       - [The Semantic Web Made Easy](./research/web-3/related/the-semantic-web-made-easy.md).
   - [Graph Database](./research/graph-database.md)
