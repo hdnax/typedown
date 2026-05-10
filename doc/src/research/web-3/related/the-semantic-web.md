@@ -44,7 +44,7 @@ To re-iterate, the **semantic web** is an extension of the **world wide web**. W
 
 - The semantic web is not a separate web: It's another dimension of information added to the world wide web.
 
-Before entering the next sections, it's useful to view this tower of semantic web:
+Before entering the next sections, it's useful to view this tower of semantic web (image taken from `w3.org`):
 
 ![Semantic Web Tower](../../../img/semantic-web-tower.png)
 
@@ -131,6 +131,8 @@ Equivalence statements link different names for the same concept across separate
   - Fast, custom local terms to easily map to slower, broader global standards.
 
 ### Navigation The Logic Web
+
+Image taken from `w3.org`:
 
 ![Semantic Web concepts](../../../img/semantic-web-concepts.png)
 
