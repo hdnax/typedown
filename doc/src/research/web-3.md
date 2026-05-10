@@ -32,3 +32,9 @@ Refer to [Research Topics](#research-topics) for the more in-depth details of th
 - [Linked Data](./web-3/linked-data.md): principles, publishing, interlinking datasets, JSON-LD, Schema.org
 
 ## Overview
+
+> A new form of Web content that is meaningful to computers will unleash a revolution of new possibilities. - "The Semantic Web" article by Tim Berners Lee.
+
+Semantic web aims to add a machine-readable semantic layer to the largely unstructured traditional web, which was mostly aimed towards human. It incorporates a suite of philosophy and technology to make the traditional web easilly analyzable by tractable algorithms. This, in turn, allows the machine/web crawlers/search engines to construct a graph of information found on the web.
+
+Note that the traditional web is already a graph, however, the nodes in this graph is an opaque web page from which useful knowledge can be somewhat extracted. With the semantic web though, the nodes are more fine-grained: it's no longer working at the grain of web pages anymore - it's now working at the grain of knowledge the web pages contain.
