@@ -46,7 +46,7 @@ To re-iterate, the **semantic web** is an extension of the **world wide web**. W
 
 Before entering the next sections, it's useful to view this tower of semantic web:
 
-![Semantic Web Tower](https://www.w3.org/RDF/Metalog/images/sw-tower.png)
+![Semantic Web Tower](../../../img/semantic-web-tower.png)
 
 ## The First Level of Semantic Web: RDF
 
