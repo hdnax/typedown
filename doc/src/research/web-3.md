@@ -26,10 +26,11 @@ Refer to [Research Topics](#research-topics) for the more in-depth details of th
 
 ## Research Topics
 
-- [RDF](./web-3/rdf.md): triples, graphs, serialization formats (Turtle, JSON-LD, RDF/XML)
-- [Ontologies](./web-3/ontologies.md): RDFS, OWL, vocabulary and reasoning layers
-- [SPARQL](./web-3/sparql.md): querying RDF graphs
-- [Linked Data](./web-3/linked-data.md): principles, publishing, interlinking datasets, JSON-LD, Schema.org
+- Concepts:
+  - [RDF](./web-3/concepts/rdf.md): triples, graphs, serialization formats (Turtle, JSON-LD, RDF/XML)
+  - [Ontologies](./web-3/concepts/ontologies.md): RDFS, OWL, vocabulary and reasoning layers
+  - [SPARQL](./web-3/concepts/sparql.md): querying RDF graphs
+  - [Linked Data](./web-3/concepts/linked-data.md): principles, publishing, interlinking datasets, JSON-LD, Schema.org
 
 ## Overview
 
