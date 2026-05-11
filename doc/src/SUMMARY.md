@@ -6,7 +6,15 @@
     - [The Semantic Web (Tim Berners Lee)](./research/web-3/the-semantic-web.md).
     - [The Semantic Web Made Easy](./research/web-3/the-semantic-web-made-easy.md).
   - [Graph Database](./research/graph-database.md)
+    - [Glossary](./research/graph-database/glossary.md)
     - [Graph Databases by Ian Robison, Jim Webber & Emil Eifrem](./research/graph-database/graph-databases-book.md)
+      - [The Concept of Graph](./research/graph-database/graph-databases-book/1-concept-graph.md)
+      - [The Property Graph Model](./research/graph-database/graph-databases-book/2-concept-property-graph-model.md)
+      - [The Graph Space](./research/graph-database/graph-databases-book/3-the-graph-space.md)
+      - [Graph Database](./research/graph-database/graph-databases-book/4-concept-graph-database.md)
+      - [Local vs Global Graph Operations](./research/graph-database/graph-databases-book/5-concept-local-vs-global-graph-operations.md)
+      - [Graph Compute Engine](./research/graph-database/graph-databases-book/6-concept-graph-compute-engine.md)
+      - [Graph Database Pros](./research/graph-database/graph-databases-book/7-graph-database-pros.md)
   - [YAML 1.2](./research/yaml-1.2.md)
 - [Design](design.md)
   - [Typedown YAML Schema & Processor](./design/typedown-yaml-schema-and-processor.md)
