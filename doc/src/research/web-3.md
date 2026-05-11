@@ -35,13 +35,13 @@ Refer to [Research Topics](#research-topics) for the more in-depth details of th
 - [Schema.org](https://schema.org/)
 - _Semantic Web for the Working Ontologist_ - Dean Allemang, James Hendler (Morgan Kaufmann)
 
-## Research Topics
+## Expected Topics to Research
 
-- Concepts:
-  - [RDF](./web-3/concepts/rdf.md): triples, graphs, serialization formats (Turtle, JSON-LD, RDF/XML)
-  - [Ontologies](./web-3/concepts/ontologies.md): RDFS, OWL, vocabulary and reasoning layers
-  - [SPARQL](./web-3/concepts/sparql.md): querying RDF graphs
-  - [Linked Data](./web-3/concepts/linked-data.md): principles, publishing, interlinking datasets, JSON-LD, Schema.org
+- The philosophy of Semantic Web.
+- The model of Semantic Web.
+- RDF.
+- Ontology.
+- Query and processing Semantic Web.
 
 ## Overview
 

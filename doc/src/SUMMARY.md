@@ -3,18 +3,10 @@
 - [Introduction](introduction.md)
 - [Research](research.md)
   - [Semantic Web](./research/web-3.md)
-    - [Concepts](./research/web-3/concepts.md)
-      - [RDF](./research/web-3/concepts/rdf.md)
-      - [Ontologies](./research/web-3/concepts/ontologies.md)
-      - [SPARQL](./research/web-3/concepts/sparql.md)
-      - [Linked Data](./research/web-3/concepts/linked-data.md)
-    - [Related](./research/web-3/related.md)
-      - [The Semantic Web (Tim Berners Lee)](./research/web-3/related/the-semantic-web.md).
-      - [The Semantic Web Made Easy](./research/web-3/related/the-semantic-web-made-easy.md).
+    - [The Semantic Web (Tim Berners Lee)](./research/web-3/the-semantic-web.md).
+    - [The Semantic Web Made Easy](./research/web-3/the-semantic-web-made-easy.md).
   - [Graph Database](./research/graph-database.md)
-    - [Data Model](./research/graph-database/data-model.md)
-    - [Query Languages](./research/graph-database/query-languages.md)
-    - [Systems](./research/graph-database/systems.md)
+    - [Graph Databases by Ian Robison, Jim Webber & Emil Eifrem](./research/graph-database/graph-databases-book.md)
   - [YAML 1.2](./research/yaml-1.2.md)
 - [Design](design.md)
   - [Typedown YAML Schema & Processor](./design/typedown-yaml-schema-and-processor.md)
