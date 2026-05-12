@@ -11,7 +11,7 @@ The Semantic Web is defined as an upgraded web where data has clear, machine-rea
 - The ultimate goal is to enable better, more seamless cooperation between humans and computers.
 - The architecture of this vision is based on the "Semantic Web Tower", an iconic whiteboard drawing by Berners-Lee that is universally used to explain the concept to both developers and the general public.
 
-![Semantic Web Tower](../../../img/semantic-web-tower.png)
+![Semantic Web Tower](../../../assets/semantic-web-tower.png)
 
 ## The Question
 
@@ -27,7 +27,7 @@ The Semantic Web stalled because it built a system for machines, but completely 
 
 Image from `w3.org`:
 
-![The perception of the tower](../../../img/semantic-web-perception.png)
+![The perception of the tower](../../../assets/semantic-web-perception.png)
 
 The "P (Perception/People) Axis" is a proposed new dimension for the Semantic Web designed specifically to bridge the gap between complex machine logic and human usability.
 

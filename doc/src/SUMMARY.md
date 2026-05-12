@@ -6,6 +6,13 @@
   - [Semantic Web](./research/web-3.md)
     - [The Semantic Web (Tim Berners Lee)](./research/web-3/the-semantic-web.md).
     - [The Semantic Web Made Easy](./research/web-3/the-semantic-web-made-easy.md).
+    - [Graph Technologies: Semantic Web vs Property Graph](./research/graph-technologies-comparison.md)
+    - [Technologies](./research/web-3/technologies.md)
+      - [URI: Global Identity](./research/web-3/technologies/uri.md)
+      - [XML: Structure Without Meaning](./research/web-3/technologies/xml.md)
+      - [RDF: Meaning as Triples](./research/web-3/technologies/rdf.md)
+      - [OWL: Ontologies and Reasoning](./research/web-3/technologies/owl.md)
+      - [SPARQL: Query Language for RDF](./research/web-3/technologies/sparql.md)
   - [Graph Database](./research/graph-database.md)
     - [Graph Databases by Ian Robison, Jim Webber & Emil Eifrem](./research/graph-database/graph-databases-book.md)
       - [The Concept of Graph](./research/graph-database/graph-databases-book/1-concept-graph.md)

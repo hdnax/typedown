@@ -46,7 +46,7 @@ To re-iterate, the **semantic web** is an extension of the **world wide web**. W
 
 Before entering the next sections, it's useful to view this tower of semantic web (image taken from `w3.org`):
 
-![Semantic Web Tower](../../../img/semantic-web-tower.png)
+![Semantic Web Tower](../../../assets/semantic-web-tower.png)
 
 ## The First Level of Semantic Web: RDF
 
@@ -134,7 +134,7 @@ Equivalence statements link different names for the same concept across separate
 
 Image taken from `w3.org`:
 
-![Semantic Web concepts](../../../img/semantic-web-concepts.png)
+![Semantic Web concepts](../../../assets/semantic-web-concepts.png)
 
 Information isn't found by querying a central database. Systems discover new data by actively following links (URIs) embedded within documents.
 

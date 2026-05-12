@@ -18,8 +18,8 @@ Here is the list of resources used this document:
 
 See related resources:
 
-- [The Semantic Web Slides by Berners-Lee et al.](https://www.w3.org/2000/Talks/0906-xmlweb-tbl/text.htm). Check the corresponding notes here: [](./web-3/related/the-semantic-web.md)
-- [The Semantic Web Made Easy](https://www.w3.org/RDF/Metalog/docs/sw-easy)
+- [The Semantic Web Slides by Berners-Lee et al.](https://www.w3.org/2000/Talks/0906-xmlweb-tbl/text.htm). Check the corresponding notes here: [Link](./web-3/the-semantic-web.md)
+- [The Semantic Web Made Easy](https://www.w3.org/RDF/Metalog/docs/sw-easy). Check the corresponding notes here: [Link](./web-3/the-semantic-web-made-easy.md)
 
 Refer to [Research Topics](#research-topics) for the more in-depth details of the semantic web.
 
