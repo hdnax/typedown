@@ -4,6 +4,13 @@ This is a book aims at practicality, focus on managing and querying highly conne
 
 The book is authored by engineers at Neo4J.
 
+Key takeaways:
+
+> - Graph databases excel at **highly connected data** where relational databases and aggregate NoSQL stores struggle: Query patterns that require traversing various records via links.
+> - Graph databases are more adept at querying **graph-like properties**, like all transitive friends of a person, where relational joins degrade exponentially with depth. Graph traversal stays constant (O(1) per hop with index-free adjacency).
+> - The **property graph model** (nodes + relationships, both with key-value properties) is simple yet covers the vast majority of use cases.
+> - Graph databases are **schema-free and additive**: New node types and relationships can be added without breaking existing queries.
+
 The book covers the followings:
 
 - The **Cypher query language**.
