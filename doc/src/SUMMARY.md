@@ -9,6 +9,7 @@
     - [Graph Technologies: Semantic Web vs Property Graph](./research/graph-technologies-comparison.md)
     - [Technologies](./research/web-3/technologies.md)
       - [URI: Global Identity](./research/web-3/technologies/uri.md)
+        - [RFC 3986: URI Generic Syntax](./research/web-3/technologies/uri/rfc-3986.md)
       - [XML: Structure Without Meaning](./research/web-3/technologies/xml.md)
       - [RDF: Meaning as Triples](./research/web-3/technologies/rdf.md)
       - [OWL: Ontologies and Reasoning](./research/web-3/technologies/owl.md)
