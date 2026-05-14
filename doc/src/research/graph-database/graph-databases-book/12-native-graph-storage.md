@@ -37,7 +37,7 @@ All stores use **fixed-size records** so any record's location can be computed b
 Each node record acts as an "address book": It tells you where to find the node's relationships and properties. It stores no actual user data, just pointers.
 
 - Fixed-size records (9 bytes).
-- Contains:
+- Each record contains the following.
   - **In-use flag** (1 byte): Whether this record is active or reclaimable.
   - **Pointer to first relationship** (4 bytes): Entry point into the relationship chain (a linked list of all relationships connected to this node).
   - **Pointer to first property** (4 bytes): Entry point into the property chain (a linked list of key-value pairs for this node).
@@ -48,7 +48,7 @@ Each node record acts as an "address book": It tells you where to find the node'
 This store holds the wiring between nodes. Each record knows which two nodes it connects and how to find the next relationship for both of them. It stores no user data, just structure.
 
 - Fixed-size records (33 bytes).
-- Contains:
+- Each record contains the following.
   - **Start node ID** (4 bytes): The node at the start of this relationship.
   - **End node ID** (4 bytes): The node at the end of this relationship.
   - **Relationship type pointer** (4 bytes): Points to the relationship type store.

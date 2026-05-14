@@ -4,7 +4,7 @@ The most popular graph model variant. A property graph is made up of **nodes**, 
 
 - **Nodes** contain properties: Arbitrary key-value pairs where keys are strings and values are arbitrary data types. Think of nodes as documents.
 - **Relationships** connect and structure nodes. A relationship always has a **direction**, a **label**, a **start node**, and an **end node**: There are no dangling relationships. Direction and label together add semantic clarity.
-- Both nodes and relationships can hold **properties**. Relationship properties are particularly useful for:
+- Both nodes and relationships can hold **properties**. Relationship properties are particularly useful for the following.
   - Providing metadata for graph algorithms.
   - Adding semantics (quality, weight).
   - Constraining queries at runtime.

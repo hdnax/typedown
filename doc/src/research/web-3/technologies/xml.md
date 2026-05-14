@@ -14,4 +14,4 @@
 
 ### In Semantic Web
 
-- XML provides structure but no meaning: `<name>` could mean anything without external agreement. This is exactly the gap that RDF fills by adding URIs to every concept. See [RDF: Meaning as Triples](./rdf.md).
+- XML provides structure but no meaning: `<name>` could mean anything without external agreement. This is exactly the gap that RDF fills by adding URIs to every concept. See [RDF: Meaning as Triples](../rdf.md).

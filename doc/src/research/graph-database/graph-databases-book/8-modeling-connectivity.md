@@ -24,15 +24,15 @@ Ironically, relational databases deal poorly with relationships. "Relations" onl
 
 Problems:
 
-- Join tables cause accidental complexity:
+- Join tables cause accidental complexity.
   - The relational model itself doesn't allow relationships between tables to have properties. Junction tables must be used in this case. However, they are usually sparse and large for graph databases' use cases.
   - Junction tables mix both business and metadata.
   - Example: A simple "Alice is friends with Bob" requires a dedicated table with only foreign keys.
-- Queries degrade with depth due to increased joins:
+- Queries degrade with depth due to increased joins.
   - "Bob's friends" is cheap (1 join).
   - "Friends-of-friends" needs 4 joins.
   - At 4-6 degrees of depth, cost grows exponentially.
-- Reciprocal queries are asymmetric:
+- Reciprocal queries are asymmetric.
   - Some types of queries are cheap, some are not.
   - Example: "What did customer X buy?" is cheap, but "which customers bought product Y?" scans the entire join table.
 - Schema is rigid and brittle: Sparse nullable columns and special-case code are required to handle ad-hoc connections. Migrations are costly as the application evolves.
@@ -43,7 +43,7 @@ Most NoSQL aggregate stores do not store relationships. A **well-known workaroun
 
 Aggregate stores fake relationships by embedding foreign aggregate IDs inside fields (e.g. `order: 1234` inside a user document). This looks graph-like but has fundamental problems:
 
-- Relationships aren't first-class:
+- Relationships aren't first-class.
   - The application must build and maintain connections manually, the database is agnostic of the relationships, so relationship-involving queries are not well-optimized.
   - ACID may not even hold. If it fails to update/delete references in tandem, dangling references accumulate.
 - Forward-only links: References only point one way. "What did Alice order?" is easy (look up her order IDs). "Who bought product X?" requires a brute-force scan of the entire dataset (O(n)).
@@ -86,7 +86,7 @@ At depth 2, both are fine. At depth 3, the RDBMS takes 30 seconds (unusable for 
 Graphs are naturally multi-dimensional. Different domains can be joined into a single graph, enabling queries that cross domain boundaries, for example:
 
 - **Purchase history**: User -[PLACED]-> Order -[CONTAINS]-> Product. A MOST_RECENT linked list supports browsing order history.
-- **Geospatial data**: Modeled using **R-Trees**, graph-like indexes that describe bounded boxes around geographies, forming overlapping location hierarchies (e.g. postal code -> district -> city -> country). This allows "people who live nearby" queries.
+- **Geospatial data**: Modeled using **R-Trees**, graph-like indexes that describe bounded boxes around geographies, forming overlapping location hierarchies (e.g. postal code, district, city, country). This allows "people who live nearby" queries.
 - **Recommendations**: Combine all of the above. "Find ice cream flavors liked by people who live near user X, enjoy espresso, but dislike Brussels sprouts" is a single graph traversal joining purchase patterns, social connections, and geospatial data.
 - **Fraud detection**: Patterns outside the norm for a given user are easily detected by comparing against graph-wide buying patterns.
 
