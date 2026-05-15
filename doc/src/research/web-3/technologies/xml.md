@@ -1,5 +1,21 @@
 # XML: Structure Without Meaning
 
+> Note: Only covering enough XML concepts to understand RDF and OWL. Not a deep dive into XML itself.
+
+XML stands for eXtensible Markup Language, designed to store and transport data & self-descriptive.
+
+W3C recommends XML.
+
+> Remark: I find XML to be verbose and user-unfriendly though. But maybe it's one of the first universal and portable data transport format.
+
+- [Core](./xml/core.md): Syntax, rules, namespaces, properties.
+- [DOM: HTML DOM for XML](./xml/dom.md)
+- [XPath: CSS Selectors for XML](./xml/xpath.md)
+- [XSLT: Template Engine for XML](./xml/xslt.md)
+- [XQuery: SQL for XML](./xml/xquery.md)
+- [XPointer: Fragment Identifiers for XML](./xml/xpointer.md)
+- [XLink: Hyperlinks for XML](./xml/xlink.md)
+
 ## Resources
 
 ### Specs
