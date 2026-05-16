@@ -23,6 +23,48 @@ Subpages:
 
 See also [OWL](./owl.md) for full ontology language and [SPARQL](./sparql.md) for querying.
 
+## Semantics of RDF Graphs
+
+Motivation:
+
+- Syntax alone is not enough to reliably merge data across sources.
+- Two datasets can use the same IRI to mean different things, or different IRIs to mean the same thing.
+
+RDF addresses this with a **model-theoretic semantics** ([RDF Semantics](https://www.w3.org/TR/rdf12-semantics/)):
+
+- Every IRI denotes some thing in the world (its **referent**).
+- A triple `S P O` is true when the referent of `S` and the referent of `O` are actually related by the relation denoted by `P`.
+- A graph is true when all its triples are true.
+
+That is all plain RDF semantics defines, without inference rules & class hierarchies, just truth conditions.
+
+This foundation lets software check consistency and draw conclusions. A **reasoner** can derive triples that are logically implied by existing ones (**entailment**), or detect contradictions. For example, `ex:bob ex:age "forty"^^xsd:integer .` is inconsistent because `"forty"` does not satisfy `xsd:integer`.
+
+RDFS and OWL build inference rules on top of this, but are not part of RDF's core semantics. Each introduces **privileged IRIs** whose meaning is hardcoded into processors:
+
+- **RDFS**: adds rules via `rdfs:domain`, `rdfs:subClassOf`, etc. For example, `foaf:knows rdfs:domain foaf:Person .` lets a reasoner derive `ex:bob rdf:type foaf:Person .` from `ex:bob foaf:knows ex:alice .`
+- **OWL**: adds richer rules (cardinality, disjointness, equivalence) on top of RDFS.
+
+Axioms are not written in RDF. They are formal rules in the spec, implemented in processor code. What you write in RDF are **vocabulary triples** that act as inputs to those rules:
+
+- The axiom "if `P rdfs:domain C` and `X P Y`, infer `X rdf:type C`" lives in the spec.
+- The triple `foaf:knows rdfs:domain foaf:Person .` is a normal RDF triple that triggers it.
+
+RDF Schema also draws no hard line between classes and instances: the same IRI can serve both roles at once.
+
+## Linked Data
+
+RDF data is widely published on the Web as [Linked Data](https://www.w3.org/wiki/LinkedData): datasets connected by shared IRIs and queryable via SPARQL.
+
+Notable examples include Wikidata, DBpedia, WordNet, Europeana, and VIAF.
+
+Different publishers often mint different IRIs for the same entity. `owl:sameAs` lets anyone assert that two IRIs refer to the same resource, so processors can merge data across datasets:
+
+```turtle
+<http://dbpedia.org/resource/Leonardo_da_Vinci>
+    owl:sameAs <http://viaf.org/viaf/24604287/> .
+```
+
 ## Resources
 
 ### Specs
