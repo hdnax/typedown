@@ -21,6 +21,8 @@
             rustfmt
             clippy
             rust-analyzer
+            nodejs
+            pnpm
           ];
         };
       }

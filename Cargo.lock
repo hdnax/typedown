@@ -3,5 +3,17 @@
 version = 4
 
 [[package]]
-name = "typedown"
+name = "typedown-cli"
+version = "0.1.0"
+
+[[package]]
+name = "typedown-db"
+version = "0.1.0"
+
+[[package]]
+name = "typedown-lsp"
+version = "0.1.0"
+
+[[package]]
+name = "typedown-syntax"
 version = "0.1.0"
