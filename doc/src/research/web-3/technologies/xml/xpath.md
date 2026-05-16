@@ -8,7 +8,7 @@ XPath is used in XSLT, XQuery, XPointer, XLink.
 
 > Analogy: XPath is to XML what **CSS selectors** are to HTML. Both select nodes from a tree.
 
-> Remark: XML starts to look like Typedown's idea. XPath is the basis for querying.
+> Remark: XML starts to look like Semdown's idea. XPath is the basis for querying.
 
 ## Syntax
 

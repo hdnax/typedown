@@ -1,5 +1,5 @@
 [package]
-name = "typedown-db"
+name = "semdown-syntax"
 version = "0.1.0"
 edition = "2024"
 
