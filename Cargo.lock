@@ -3,17 +3,17 @@
 version = 4
 
 [[package]]
-name = "semdown-cli"
+name = "typedown-cli"
 version = "0.1.0"
 
 [[package]]
-name = "semdown-db"
+name = "typedown-db"
 version = "0.1.0"
 
 [[package]]
-name = "semdown-lsp"
+name = "typedown-lsp"
 version = "0.1.0"
 
 [[package]]
-name = "semdown-syntax"
+name = "typedown-syntax"
 version = "0.1.0"

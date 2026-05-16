@@ -90,7 +90,7 @@ The Web's core property is **universality**: anything can link to anything, with
 
 Like the Internet, the Semantic Web is designed to be **decentralized**, trading **total consistency** for unchecked growth. The trade-off is familiar: "404 Not Found" is the cost of allowing anyone to publish anything without central coordination.
 
-> **Semdown doesn't really prioritize decentralized (notes are mostly centralized) & favor total consistency more.**
+> **Typedown doesn't really prioritize decentralized (notes are mostly centralized) & favor total consistency more.**
 
 According to [Knowledge Representation](#knowledge-representation), essentially, the semantic web unify the language to specify documents/knowledge and the language to define rues for reasoning about the data in which anyone can publish document.
 

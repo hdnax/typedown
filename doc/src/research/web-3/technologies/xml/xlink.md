@@ -76,4 +76,4 @@ Without local resources, an extended link is purely a third-party routing table 
 
 > Remark: Extended links separate the _what_ (locators and resources), the _where_ (arcs), and the _how_ (show/actuate) of linking. Simple links bundle all three into one element.
 
-> Remark: Extended links decouple the link definition from the resources. This means links can be inline (the local resource is the anchor, arcs point outward), out-of-line (the link element lives in a separate document from the resources it connects), or retroactive (you can link existing documents without modifying them by creating an extended link elsewhere that references them as locators). This can be useful for Semdown.
+> Remark: Extended links decouple the link definition from the resources. This means links can be inline (the local resource is the anchor, arcs point outward), out-of-line (the link element lives in a separate document from the resources it connects), or retroactive (you can link existing documents without modifying them by creating an extended link elsewhere that references them as locators). This can be useful for Typedown.

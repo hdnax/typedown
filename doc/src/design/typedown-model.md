@@ -1,4 +1,4 @@
-# Semdown Abstract Model
+# Typedown Abstract Model
 
 Graph database.
 

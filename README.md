@@ -1,4 +1,4 @@
-# Semdown
+# Typedown
 
 ![Status](https://img.shields.io/badge/status-active-brightblue)
 ![License](https://img.shields.io/badge/license-GPL-green)

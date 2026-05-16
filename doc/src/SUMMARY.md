@@ -42,5 +42,5 @@
       - [Neo4j Internals: Transactions, Availability, Scale](./research/graph-database/graph-databases-book/13-internals-transactions-availability-scale.md)
   - [YAML 1.2](./research/yaml-1.2.md)
 - [Design](design.md)
-  - [Semdown YAML Schema & Processor](./design/semdown-yaml-schema-and-processor.md)
-  - [Semdown Abstract Model](./design/semdown-model.md)
+  - [Typedown YAML Schema & Processor](./design/typedown-yaml-schema-and-processor.md)
+  - [Typedown Abstract Model](./design/typedown-model.md)

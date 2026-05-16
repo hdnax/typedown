@@ -8,7 +8,7 @@ XSLT (**eXtensible Stylesheet Language Transformations**) **transforms** XML doc
 
 > Remark: XSLT and [XQuery](./xquery.md) overlap significantly, but XSLT is **template-driven** (declare patterns, the processor applies them) while XQuery is **expression-driven** (explicitly select and construct). XSLT is better suited for document transformation, while XQuery is better suited for data querying.
 
-> Remark: XML starts to look like Semdown's idea. XSLT in Semdown would be for static site generation.
+> Remark: XML starts to look like Typedown's idea. XSLT in Typedown would be for static site generation.
 
 Part of the [XSL family](./core.md#xsl-family).
 

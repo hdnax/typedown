@@ -2,7 +2,7 @@
 authors = ["Huy-DNA"]
 language = "en"
 src = "src"
-title = "Semdown"
+title = "Typedown"
 
 [preprocessor]
 
