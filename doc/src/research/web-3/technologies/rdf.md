@@ -1,27 +1,34 @@
 # RDF: Meaning as Triples
 
+RDF (Resource Description Framework) is a framework for expressing machine-readable information about resources (as defined like the URI spec). RDF enables automated processing and exchange of information across applications without losing meaning.
+
+In the Semantic Web stack, XML provides structure but its tags have no machine-interpretable meaning: `<creator>` is just a string to an XML parser. RDF adds a **universal data model** (triples with IRIs) on top, so every relationship and resource has a globally unique identifier. This makes data interoperable and mergeable across sources. In that sense, RDF is metadata about resources, described in a way machines can reason about.
+
+RDF is another graph model like property graphs. For how RDF compares to property graphs, see [The Graph Space](../../graph-database/graph-databases-book/3-the-graph-space.md#property-graph-vs-rdf).
+
+RDF is recommended by W3C.
+
+- Enriching web pages with machine-readable metadata (schema.org).
+- Linking datasets across sources (e.g. paintings to artist information in Wikidata).
+- Standards-compliant database data exchange.
+- Cross-dataset querying via SPARQL.
+
+Subpages:
+
+- [Data Model](./rdf/data-model.md): Triples, RDF terms, named graphs, semantics.
+- [Serialization Formats](./rdf/serialization.md): Turtle, N-Triples, TriG, N-Quads, JSON-LD, RDFa, RDF/XML.
+- [RDFS](./rdf/rdfs.md): Vocabularies and class hierarchies for RDF.
+
+See also [OWL](./owl.md) for full ontology language and [SPARQL](./sparql.md) for querying.
+
 ## Resources
 
 ### Specs
 
-- [W3C RDF 1.2 Primer](https://www.w3.org/TR/rdf12-primer/) - Gentle intro with examples, from the spec authors.
-- [W3C RDF 1.2 Concepts](https://www.w3.org/TR/rdf12-concepts/) - Formal abstract data model. Read after the Primer.
-
-### In Semantic Web
-
-- For how RDF compares to property graphs, see [The Graph Space: Property Graph vs RDF](../../graph-database/graph-databases-book/3-the-graph-space.md#property-graph-vs-rdf).
-- RDF provides the data layer. For vocabulary/class hierarchies, see RDFS (part of the [OWL](./owl.md) page). For querying, see [SPARQL](./sparql.md).
+- [W3C RDF 1.2 Primer](https://www.w3.org/TR/rdf12-primer/) is a gentle intro with examples, from the spec authors.
+- [W3C RDF 1.2 Concepts](https://www.w3.org/TR/rdf12-concepts/) is the formal abstract data model. Read after the Primer.
 
 ### Others
 
-- [Baeldung: Introduction to RDF](https://www.baeldung.com/cs/rdf-intro) - Concise, covers triples, serialization formats (Turtle, JSON-LD, RDF/XML), and SPARQL basics.
-- [Enterprise Knowledge: The RDF Guide](https://enterprise-knowledge.com/the-resource-description-framework-rdf/) - Practical, application-focused. Good on why RDF matters for knowledge graphs.
-
-### Alternative Serialization Formats
-
-RDF is an abstract model, not a file format. Multiple serializations exist:
-
-- **Turtle** - Human-readable, most commonly used for hand-written RDF.
-- **JSON-LD** - JSON-based, popular in web APIs and schema.org.
-- **RDF/XML** - Original format, verbose, mostly legacy.
-- **N-Triples** - One triple per line, simple but verbose. Good for streaming.
+- [Baeldung: Introduction to RDF](https://www.baeldung.com/cs/rdf-intro) is concise and covers triples, serialization formats (Turtle, JSON-LD, RDF/XML), and SPARQL basics.
+- [Enterprise Knowledge: The RDF Guide](https://enterprise-knowledge.com/the-resource-description-framework-rdf/) is practical and application-focused, good on why RDF matters for knowledge graphs.

@@ -14,4 +14,4 @@ graph LR
     A["Person<br>{name: 'A', age: 30}"] -->|"KNOWS<br>{since: 2020}"| B["Person<br>{name: 'B', age: 25}"]
 ```
 
-Simple enough to be intuitive, yet expressive enough for the vast majority of graph use cases. These primitives are all that's needed to create sophisticated, semantically rich models.
+This model is simple enough to be intuitive, yet expressive enough for the vast majority of graph use cases. These primitives are all that's needed to create sophisticated, semantically rich models.
